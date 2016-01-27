@@ -22,7 +22,7 @@ done
 mysqladmin password "$MYSQL_ROOT_PASSWORD"
 
 #	Start Nginx
-/bin/sh -c /usr/sbin/nginx
+/usr/sbin/nginx
 
 wait
 
