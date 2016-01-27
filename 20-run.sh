@@ -2,6 +2,7 @@
 
 image_tag='webxor/websrv'
 container_name='websrv'
+mysql_root_password='pwd1234%^'
 
 mysql_data_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 mysql_data_path=$mysql_data_path/mysql
@@ -10,7 +11,7 @@ echo 'START: Run '$image_tag
 
 docker run -d -t -i \
 	-v $mysql_data_path:/var/lib/mysql \
-	-e MYSQL_ROOT_PASSWORD='rootpassword' \
+	-e MYSQL_ROOT_PASSWORD=$mysql_root_password \
 	-p 20080:80 \
 	--name $container_name \
 	$image_tag
