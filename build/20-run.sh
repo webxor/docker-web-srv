@@ -21,6 +21,14 @@ done
 #	Set root password for MySQL
 mysqladmin password "$MYSQL_ROOT_PASSWORD"
 
+#	Set root password for server
+echo "$LINUX_ROOT_PASSWORD" | passwd --stdin
+
+#	Set access to www dir
+if [ ! -d /var/www ]; then
+	chown www-data:www-data /var/www
+fi
+
 #	Start Nginx
 /usr/sbin/nginx
 
