@@ -6,7 +6,7 @@ ENV	DEBIAN_FRONTEND noninteractive
 
 RUN	apt-get update \
 	&& apt-get upgrade -y \
-	&& apt-get install -y ssh-server git \
+	&& apt-get install -y git \
 	&& apt-get install -y mysql-server \
 	&& apt-get install -y nginx curl wget \
 	&& apt-get install -y php5 php5-fpm php5-cli php5-curl php5-mysql php5-memcache php-apc php5-mcrypt php5-imagick \
