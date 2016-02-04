@@ -16,7 +16,7 @@ RUN	apt-get update \
     && rm -rf /var/lib/mysql \
     && rm -rf /var/www
 
-ADD build/nginx.conf /etc/nginx/nginx.conf
+ADD build/conf/nginx.conf /etc/nginx/nginx.conf
 ADD build/20-run.sh /root/run.sh
 
 RUN chmod +x /root/run.sh
