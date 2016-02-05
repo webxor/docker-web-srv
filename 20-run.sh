@@ -3,6 +3,9 @@
 image_tag='webxor/websrv'
 container_name='websrv'
 
+##	Hostname
+hostname="websrv"
+
 ##	Container root password
 root_password='Qq123$%^'
 
@@ -21,8 +24,9 @@ home_path=$host_path/www
 echo 'START: Run '$image_tag
 
 docker run -d -t -i \
-	-e MYSQL_ROOT_PASSWORD=$mysql_root_password \
+	-h $hostname \
 	-e ROOT_PASSWORD=$root_password \
+	-e MYSQL_ROOT_PASSWORD=$mysql_root_password \
 	-e USER_USERNAME=$user_username \
 	-e USER_PASSWORD=$user_password \
 	-v $mysql_path:/var/lib/mysql \

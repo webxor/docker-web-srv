@@ -45,8 +45,7 @@ function configure_web {
 		chown www-data:www-data /var/www/log
 	fi
 
-	##	Start Nginx
-	/usr/sbin/nginx
+	service nginx start
 }
 
 ##	Function for configuring server
@@ -56,8 +55,7 @@ function configure_web {
 ##
 function configure_server {
 	##	Set root password for server
-	echo "$1" | passwd --stdin
-	##	NOTE: Не меняет пароль и падает
+	echo -e "$1\n$1" | passwd
 
 	##	Start SSH
 	service ssh start
@@ -74,7 +72,7 @@ function create_user {
 	useradd -M -N -g www-data -s /bin/bash $1
 
 	##	Set password for new user
-	echo "$2" | passwd $1 --stdin
+	echo -e "$2\n$2" | passwd $1
 
 	chmod 0750 /var/www
 	chown $1:www-data /var/www
@@ -88,6 +86,3 @@ configure_server $ROOT_PASSWORD
 create_user $USER_USERNAME $USER_PASSWORD
 
 wait
-
-
-
