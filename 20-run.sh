@@ -4,7 +4,7 @@ image_tag='webxor/websrv'
 container_name='websrv'
 
 ##	Hostname
-hostname="websrv"
+hostname='websrv'
 
 ##	Container root password
 root_password='Qq123$%^'
@@ -21,7 +21,7 @@ host_path="$( cd "$( dirname "$0" )" && pwd )"
 mysql_path=$host_path/mysql
 home_path=$host_path/www
 
-echo 'START: Run '$image_tag
+echo "START: Run $image_tag"
 
 docker run -d -t -i \
 	-h $hostname \
@@ -36,10 +36,10 @@ docker run -d -t -i \
 	--name $container_name \
 	$image_tag
 
-echo 'FINISH: Run '$image_tag
+echo "FINISH: Run $image_tag"
 
-echo 'START: Clean'
+echo "START: Clean"
 
 docker rmi $(docker images -q -f dangling=true)
 
-echo 'FINISH: Clean'
+echo "FINISH: Clean"
