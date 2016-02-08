@@ -1,7 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-image_tag='webxor/websrv'
+dir="$( cd "$( dirname "$0" )" && pwd )"
+. $dir/00-config.cfg
 
-echo "START: Build image $image_tag"
-docker build --tag=$image_tag ./
-echo "FINISH: Build image $image_tag"
+##	Function for building new image from Dockerfile
+##
+build_docker () {
+	echo "START: Build image $image_tag"
+	docker build --tag=$image_tag ./
+	echo "DONE: Build image $image_tag"
+}
+
+build_docker

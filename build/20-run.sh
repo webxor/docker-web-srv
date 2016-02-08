@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ##	Function for configuring MySQL
 ##
 ##	Params
 ##	$1	$MYSQL_ROOT_PASSWORD
 ##
-function configure_mysql {
+configure_mysql () {
 	##	Set user:group and init mysql
 	if [ ! -d /var/lib/mysql/mysql ]; then
 		chown mysql:mysql /var/lib/mysql
@@ -30,7 +30,7 @@ function configure_mysql {
 
 ##	Function for configuring web server
 ##
-function configure_web {
+configure_web () {
 	##	Set access to web public dir
 	if [ ! -d /var/www/public ]; then
 		mkdir -p /var/www/public
@@ -53,7 +53,7 @@ function configure_web {
 ##	Params
 ##	$1	$LINUX_ROOT_PASSWORD
 ##
-function configure_server {
+configure_server () {
 	##	Set root password for server
 	echo -e "$1\n$1" | passwd
 
@@ -67,7 +67,7 @@ function configure_server {
 ##	$1	$LINUX_USER_NAME
 ##	$2	$LINUX_USER_PASSWORD
 ##
-function create_user {
+create_user () {
 	##	Create user
 	useradd -M -N -g www-data -s /bin/bash $1
 

@@ -1,5 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-container_name='websrv'
+dir="$( cd "$( dirname "$0" )" && pwd )"
+. $dir/00-config.cfg
 
-docker exec -it $container_name bash
+##	Function for executing BASH in container
+##
+exec_docker () {
+	echo "START: Executing BASH in container '$container_name'"
+	docker exec -it $container_name bash
+	echo "DONE: Executing BASH in container '$container_name'"
+}
+
+exec_docker
