@@ -1,7 +1,7 @@
 # Docker Web Server
 
 1. Update config file and set your variables
-> ./00-config.cfg
+> vim ./00-config.conf
 
 2. Create new docker image from Dockerfile
 > sh ./10-build.sh
