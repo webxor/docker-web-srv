@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 dir="$( cd "$( dirname "$0" )" && pwd )"
-. $dir/00-config.cfg
-
-mysql_path=$host_path/mysql
-home_path=$host_path/www
+. $dir/00-config.conf
 
 ##	Function for creating container from image
 ##
@@ -13,9 +10,12 @@ create_container () {
 	docker run -d -t -i \
 		-h $hostname \
 		-e ROOT_PASSWORD=$root_password \
-		-e MYSQL_ROOT_PASSWORD=$mysql_root_password \
 		-e USER_USERNAME=$user_username \
 		-e USER_PASSWORD=$user_password \
+		-e MYSQL_ROOT_PASSWORD=$mysql_root_password \
+		-e MYSQL_USER_USERNAME=$mysql_user_username \
+		-e MYSQL_USER_PASSWORD=$mysql_user_password \
+		-e MYSQL_USER_DATABASE=$mysql_user_database \
 		-v $mysql_path:/var/lib/mysql \
 		-v $home_path:/var/www \
 		-p 20080:80 \

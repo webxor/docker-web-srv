@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 dir="$( cd "$( dirname "$0" )" && pwd )"
-. $dir/00-config.cfg
+. $dir/00-config.conf
 
 ##	Function for building new image from Dockerfile
 ##

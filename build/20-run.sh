@@ -80,9 +80,26 @@ create_user () {
 	usermod -d /var/www $1
 }
 
+##	Function for creating user in mysql and create database
+##
+##	Params:
+##	$1	$MYSQL_ROOT_PASSWORD
+##	$2	$MYSQL_USER_USERNAME
+##	$3	$MYSQL_USER_PASSWORD
+##	$4	$MYSQL_USER_DATABASE
+##
+create_mysql_user () {
+	mysql -uroot -p$1 -e "
+		CREATE DATABASE IF NOT EXISTS $4;
+		GRANT USAGE ON *.* TO $2@localhost IDENTIFIED BY '$3';
+		GRANT ALL PRIVILEGES ON $4.* TO $2@'localhost';
+		FLUSH PRIVILEGES;"
+}
+
 configure_mysql $MYSQL_ROOT_PASSWORD
 configure_web
 configure_server $ROOT_PASSWORD
 create_user $USER_USERNAME $USER_PASSWORD
+create_mysql_user $ROOT_PASSWORD $MYSQL_USER_USERNAME $MYSQL_USER_PASSWORD $MYSQL_USER_DATABASE
 
 wait
