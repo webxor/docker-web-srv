@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
 dir="$( cd "$( dirname "$0" )" && pwd )"
+
 . $dir/00-config.conf
+. $dir/00-helper.sh
 
-##	Function for building new image from Dockerfile
-##
-build_docker () {
-	echo "START: Build image $image_tag"
-	docker build --tag=$image_tag ./
-	echo "DONE: Build image $image_tag"
-}
-
-build_docker
+build_docker $image_tag
