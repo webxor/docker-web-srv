@@ -6,7 +6,7 @@ ENV	DEBIAN_FRONTEND noninteractive
 
 RUN	apt-get update \
 	&& apt-get upgrade -y \
-	&& apt-get install -y git openssh-server \
+	&& apt-get install -y git openssh-server supervisor \
 	&& apt-get install -y mysql-server \
 	&& apt-get install -y nginx curl wget \
 	&& apt-get install -y php5 php5-fpm php5-cli php5-curl php5-mysql php5-memcache php-apc php5-mcrypt php5-imagick \
@@ -16,12 +16,13 @@ RUN	apt-get update \
     && rm -rf /var/lib/mysql \
     && rm -rf /var/www
 
+ADD build/conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD build/conf/nginx.conf /etc/nginx/nginx.conf
-ADD build/20-run.sh /root/run.sh
+ADD build/20-run-boot.sh /root/boot.sh
 
-RUN chmod +x /root/run.sh
+RUN chmod +x /root/boot.sh
 
 EXPOSE 22
 EXPOSE 80
 
-CMD ["/root/run.sh"]
+CMD ["/root/boot.sh"]

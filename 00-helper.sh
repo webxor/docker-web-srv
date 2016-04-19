@@ -29,6 +29,7 @@ create_container () {
 		-p 20080:80 \
 		-p 20022:22 \
 		--name $container_name \
+		--restart=always \
 		$image_tag
 	echo "DONE: Creating container '$container_name' from image '$image_tag'"
 }

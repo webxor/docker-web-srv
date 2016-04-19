@@ -102,4 +102,4 @@ configure_server $ROOT_PASSWORD
 create_user $USER_USERNAME $USER_PASSWORD
 create_mysql_user $MYSQL_ROOT_PASSWORD $MYSQL_USER_USERNAME $MYSQL_USER_PASSWORD $MYSQL_USER_DATABASE
 
-wait
+/usr/bin/supervisord
