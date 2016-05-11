@@ -3,7 +3,7 @@
 ##	Function for configuring MySQL
 ##
 ##	Params
-##	$1	$MYSQL_ROOT_PASSWORD
+##	$1	$MYSQL_ROOTPASS
 ##
 configure_mysql () {
 	##	Set user:group and init mysql
@@ -51,7 +51,7 @@ configure_web () {
 ##	Function for configuring server
 ##
 ##	Params
-##	$1	$LINUX_ROOT_PASSWORD
+##	$1	$ROOTPASS
 ##
 configure_server () {
 	##	Set root password for server
@@ -64,8 +64,8 @@ configure_server () {
 ##	Function for creating user
 ##
 ##	Params
-##	$1	$LINUX_USER_NAME
-##	$2	$LINUX_USER_PASSWORD
+##	$1	$USERNAME
+##	$2	$USERPASS
 ##
 create_user () {
 	##	Create user
@@ -83,10 +83,10 @@ create_user () {
 ##	Function for creating user in mysql and create database
 ##
 ##	Params:
-##	$1	$MYSQL_ROOT_PASSWORD
-##	$2	$MYSQL_USER_USERNAME
-##	$3	$MYSQL_USER_PASSWORD
-##	$4	$MYSQL_USER_DATABASE
+##	$1	$MYSQL_ROOTPASS
+##	$2	$MYSQL_USERNAME
+##	$3	$MYSQL_USERPASS
+##	$4	$MYSQL_DATABASE
 ##
 create_mysql_user () {
 	mysql -uroot -p$1 -e "
@@ -96,10 +96,10 @@ create_mysql_user () {
 		FLUSH PRIVILEGES;"
 }
 
-configure_mysql $MYSQL_ROOT_PASSWORD
+configure_mysql $MYSQL_ROOTPASS
 configure_web
-configure_server $ROOT_PASSWORD
-create_user $USER_USERNAME $USER_PASSWORD
-create_mysql_user $MYSQL_ROOT_PASSWORD $MYSQL_USER_USERNAME $MYSQL_USER_PASSWORD $MYSQL_USER_DATABASE
+configure_server $ROOTPASS
+create_user $USERNAME $USERPASS
+create_mysql_user $MYSQL_ROOTPASS $MYSQL_USERNAME $MYSQL_USERPASS $MYSQL_DATABASE
 
 /usr/bin/supervisord

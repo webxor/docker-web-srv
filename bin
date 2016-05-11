@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+dir="$( cd "$( dirname "$0" )" && pwd )"
+
+. $dir/config.conf
+. $dir/helper.sh
+
+case $1 in
+	build)
+		echo "Command: build\n"
+		build_docker $image_tag
+	;;
+	run)
+		echo "Command: run\n"
+		create_container $container_name
+		clean_images
+	;;
+	exec)
+		echo "Command: exec\n"
+		exec_docker $container_name
+	;;
+	kill)
+		echo "Command: kill\n"
+		kill_container $container_name
+		remove_container $container_name
+	;;
+	*)
+		echo "Choose one: build|run|exec|kill\n"
+	;;
+esac

@@ -1,4 +1,4 @@
-FROM	debian:jessie
+FROM	debian:stable
 
 MAINTAINER ev.panov@gmail.com
 
@@ -18,7 +18,7 @@ RUN	apt-get update \
 
 ADD build/conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD build/conf/nginx.conf /etc/nginx/nginx.conf
-ADD build/20-run-boot.sh /root/boot.sh
+ADD build/boot.sh /root/boot.sh
 
 RUN chmod +x /root/boot.sh
 
